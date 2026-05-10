@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bookstore>
+
+  <!-- Livres du Tuteur -->
+  <book>
+    <title>JavaScript Avancé</title>
+    <author>Tuteur Mouhamed M. Diouf</author>
+    <year>2020</year>
+    <price>5000 FCFA</price>
+    <cover>images/js-avance.png</cover>
+  </book>
+  <book>
+    <title>Apprendre le DOM</title>
+    <author>Tuteur Mouhamed M. Diouf</author>
+    <year>2022</year>
+    <price>7000 FCFA</price>
+    <cover>images/dom.jpg</cover>
+  </book>
+
+  <!-- Livres des membres du Groupe 1 -->
+  <book>
+    <title>Événements JavaScript</title>
+    <author>Khadim DIOP</author>
+    <year>2024</year>
+    <price>6000 FCFA</price>
+    <cover>images/khadim-diop.png</cover>
+  </book>
+  <book>
+    <title>Structures de Données</title>
+    <author>Azubuike Daniel EZEADIM</author>
+    <year>2024</year>
+    <price>8500 FCFA</price>
+    <cover>images/Algorithmique-et-structures-de-donnees-Programmation.jpg</cover>
+  </book>
+  <book>
+    <title>Web Moderne avec HTML5</title>
+    <author>Abdallah NDIAYE</author>
+    <year>2023</year>
+    <price>7500 FCFA</price>
+    <cover>images/Web_HTML5.jpg</cover>
+  </book>
+  <book>
+    <title>XML et Web Services</title>
+    <author>Yero Gallo SENE</author>
+    <year>2023</year>
+    <price>6500 FCFA</price>
+    <cover>images/XML_Web.jpg</cover>
+  </book>
+  <book>
+    <title>CSS3 Avancé</title>
+    <author>Mouhamadou Lamine Bamba THIAM</author>
+    <year>2024</year>
+    <price>7000 FCFA</price>
+    <cover>images/C-avancees.jpg</cover>
+  </book>
+  <book>
+    <title>Gestion de Projets Web</title>
+    <author>Saïkou Oumar THIOUNE</author>
+    <year>2024</year>
+    <price>9000 FCFA</price>
+    <cover>images/GestiondeProjetsWeb.jpeg</cover>
+  </book>
+
+</bookstore>
