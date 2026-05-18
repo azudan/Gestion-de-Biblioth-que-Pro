@@ -1,106 +1,72 @@
-### 👨‍🏫 Auteur du projet pédagogique
+# 📚 Gestion de Bibliothèque
 
-Tuteur Mouhamed Moustapha Diouf
-
----
-
-### 📸 Aperçu de l’application 
-Regarder l'image aperçu-application.png qui se trouve dans le dossier docs.
-
-L’application affiche la liste des livres sous forme de tableau avec :
-- Titre
-- Auteur
-- Année
-- Prix
-- Actions (Voir / Modifier / Supprimer)
+Application web de gestion de bibliothèque développée en JavaScript Vanilla dans le cadre du cours **JavaScript Avancé** à l'Université Numérique Cheikh Hamidou Kane (UNCHK).
 
 ---
 
-### 📖 Détail d’un livre (Modal)
-Regarder l'image aperçu-voir-livre.png qui se trouve dans le dossier docs.
+## 👨‍🏫 Tuteur
 
-Lorsqu’un utilisateur clique sur **"Voir"**, une fenêtre modale s’ouvre affichant :
-- La couverture du livre
-- Les informations complètes
+**Mouhamed Moustapha Diouf** — Tuteur JavaScript Avancé
 
 ---
 
-### ✏️ Modification d’un livre
-Regarder l'image aperçu-modifier-livre.png qui se trouve dans le dossier docs.
+## 👥 Groupe 1
 
-Le bouton **"Modifier"** permet :
-- De charger les informations dans le formulaire
-- De modifier les données existantes
-- De sauvegarder les changements dynamiquement
-
----
-### ➕ Ajout d’un livre
-Regarder l'image aperçu-ajouter-livre.png qui se trouve dans le dossier docs.
-
-L’utilisateur peut ajouter un nouveau livre via un formulaire dédié :
-
-- Saisie du titre, auteur, année et prix
-- Ajout d’une URL pour la couverture du livre
-- Insertion dynamique dans le tableau sans rechargement de page
-
-Cette fonctionnalité permet d’enrichir la bibliothèque en temps réel.
+| Prénom | Nom |
+|---|---|
+| Khadim | DIOP |
+| Azubuike Daniel | EZEADIM |
+| Abdallah | NDIAYE |
+| Yero Gallo | SENE |
+| Mouhamadou Lamine Bamba | THIAM |
+| Saïkou Oumar | THIOUNE |
 
 ---
 
-### 🔍 Recherche d'un livre
-Regarder l'image aperçu-rechercher-livre.png qui se trouve dans le dossier docs.
+## 📸 Aperçu
 
-L’application intègre une fonctionnalité de recherche dynamique :
-
-- Filtrage en temps réel (keyup)
-- Recherche par titre
-- Mise à jour instantanée du tableau
-- Amélioration de l’expérience utilisateur
+L'application affiche la liste des livres sous forme de tableau avec les colonnes **Titre**, **Auteur**, **Année**, **Prix** et **Actions** (Voir / Modifier / Supprimer).
 
 ---
 
-### ❌ Suppression d’un livre
+## ✨ Fonctionnalités
 
-L’utilisateur peut supprimer un livre directement depuis le tableau :
-
-- Bouton "Supprimer" pour chaque ligne
-- Suppression instantanée du DOM
-- Mise à jour dynamique de la liste
-
-Cette fonctionnalité permet de gérer efficacement le contenu de la bibliothèque.
+- **Chargement XML** — les données initiales sont lues depuis `books.xml` via `XMLHttpRequest`
+- **Affichage** — liste des livres dans un tableau dynamique
+- **Voir** — modal affichant la couverture et les informations complètes du livre
+- **Ajouter** — formulaire d'ajout sans rechargement de page
+- **Modifier** — pré-remplissage du formulaire avec les données existantes
+- **Supprimer** — suppression instantanée avec confirmation
+- **Recherche** — filtrage en temps réel par titre (`keyup`)
 
 ---
 
-### ⚙️ Technologies utilisées
+## ⚙️ Technologies
 
 - HTML5
-- CSS3 (Responsive + UI moderne)
-- JavaScript (Vanilla)
-- DOM Manipulation
+- CSS3
+- JavaScript Vanilla (ES6)
 - XML + XMLHttpRequest
+- DOM Manipulation
 
 ---
 
-### 🧠 Concepts pédagogiques évalués
+## 📁 Structure du projet
 
-Ce projet permet d’évaluer la maîtrise des notions suivantes :
+```
+├── index.html        # Structure de la page
+├── style.css         # Mise en page et design
+├── script.js         # Logique CRUD et manipulation du DOM
+├── books.xml         # Données initiales des livres
+├── images/           # Couvertures des livres
+└── README.md
+```
+
+## 🧠 Concepts pédagogiques évalués
 
 - Manipulation avancée du DOM
 - Gestion des événements JavaScript
-- Création et modification dynamique d’éléments HTML
+- Création et modification dynamique d'éléments HTML
 - Chargement et parsing de données XML
 - Logique CRUD (Create, Read, Update, Delete)
-- Gestion d’état côté client
-
----
-
-### ⏱️ Durée estimée du projet
-2 semaines
- 
----
-
-### 🎯 Objectif final
-
-Permettre à l’étudiant de développer une application complète en JavaScript pur, en simulant un système de gestion de bibliothèque interactif avec interface moderne.
-
----
+- Gestion d'état côté client
