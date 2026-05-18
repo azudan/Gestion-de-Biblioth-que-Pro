@@ -1,16 +1,16 @@
-# 📚 Gestion de Bibliothèque
+#  Gestion de Bibliothèque
 
 Application web de gestion de bibliothèque développée en JavaScript Vanilla dans le cadre du cours **JavaScript Avancé** à l'Université Numérique Cheikh Hamidou Kane (UNCHK).
 
 ---
 
-## 👨‍🏫 Tuteur
+##  Tuteur
 
 **Mouhamed Moustapha Diouf** — Tuteur JavaScript Avancé
 
 ---
 
-## 👥 Groupe 5
+##  Groupe 5
 
 | Prénom | Nom |
 |---|---|
@@ -23,7 +23,7 @@ Application web de gestion de bibliothèque développée en JavaScript Vanilla d
 
 ---
 
-## 📸 Aperçu
+##  Aperçu
 
 L'application affiche la liste des livres sous forme de tableau avec les colonnes **Titre**, **Auteur**, **Année**, **Prix** et **Actions** (Voir / Modifier / Supprimer).
 
@@ -41,7 +41,7 @@ L'application affiche la liste des livres sous forme de tableau avec les colonne
 
 ---
 
-## ⚙️ Technologies
+##  Technologies
 
 - HTML5
 - CSS3
@@ -51,7 +51,7 @@ L'application affiche la liste des livres sous forme de tableau avec les colonne
 
 ---
 
-## 📁 Structure du projet
+##  Structure du projet
 
 ```
 ├── index.html        # Structure de la page
@@ -62,7 +62,7 @@ L'application affiche la liste des livres sous forme de tableau avec les colonne
 └── README.md
 ```
 
-## 🧠 Concepts pédagogiques évalués
+##  Concepts pédagogiques évalués
 
 - Manipulation avancée du DOM
 - Gestion des événements JavaScript
