@@ -10,7 +10,7 @@ Application web de gestion de bibliothèque développée en JavaScript Vanilla d
 
 ---
 
-## 👥 Groupe 1
+## 👥 Groupe 5
 
 | Prénom | Nom |
 |---|---|
