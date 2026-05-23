@@ -118,8 +118,11 @@ function renderTable(list) {
 function filterBooks() {
   const query = document.getElementById('search-input').value.trim().toLowerCase();
   const filtered = query
-    ? books.filter(b => b.title.toLowerCase().includes(query))
-    : books;
+    ? books.filter(b =>
+     b.title .toLowerCase().includes(query) ||
+     b.author.toLowerCase().includes(query) ||
+     b.year  .includes(query)
+   ) : books;
   renderTable(filtered);
 }
 
