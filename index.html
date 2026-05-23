@@ -18,37 +18,38 @@
       </h1>
 
       <!-- RECHERCHE -->
-      <input
-        type="text"
-        id="search-input"
-        class="search-input"
-        placeholder="Rechercher un livre..."
-      />
+      <div class="search-bar">
+        <input type="text" id="search-title"  class="search-input" placeholder="Rechercher par titre..." />
+        <input type="text" id="search-author" class="search-input" placeholder="Rechercher par auteur..." />
+        <input type="text" id="search-year"   class="search-input search-year" placeholder="Année..." />
+      </div>
 
       <!-- TABLEAU -->
-      <table id="books-table">
-        <thead>
-          <tr>
-            <th>Titre</th>
-            <th>Auteur</th>
-            <th>Année</th>
-            <th>Prix</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody id="books-tbody"></tbody>
-      </table>
+      <div class="table-wrapper">
+        <table id="books-table">
+          <thead>
+            <tr>
+              <th>Titre</th>
+              <th>Auteur</th>
+              <th class="col-year">Année</th>
+              <th class="col-price">Prix</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="books-tbody"></tbody>
+        </table>
+      </div>
       <p id="empty-msg" style="display:none; color:#888; padding: 12px 0;">Aucun livre trouvé.</p>
 
       <!-- FORMULAIRE -->
       <h2 id="form-title" class="form-heading">Ajouter un livre</h2>
 
       <div class="form-fields">
-        <input type="text"   id="f-title"  class="form-input" placeholder="Titre" />
-        <input type="text"   id="f-author" class="form-input" placeholder="Auteur" />
-        <input type="text"   id="f-year"   class="form-input" placeholder="Année" />
-        <input type="text"   id="f-price"  class="form-input" placeholder="Prix" />
-        <input type="text"   id="f-cover"  class="form-input" placeholder="URL image couverture" />
+        <input type="text" id="f-title"  class="form-input" placeholder="Titre" />
+        <input type="text" id="f-author" class="form-input" placeholder="Auteur" />
+        <input type="text" id="f-year"   class="form-input" placeholder="Année" />
+        <input type="text" id="f-price"  class="form-input" placeholder="Prix" />
+        <input type="text" id="f-cover"  class="form-input" placeholder="URL image couverture" />
       </div>
 
       <div class="form-actions">
@@ -65,7 +66,7 @@
       <button class="modal-close" onclick="closeModal()">×</button>
       <div class="modal-body">
         <img id="modal-img" src="" alt="couverture"
-          onerror="this.style.display='none'" />
+          onerror="this.src='https://placehold.co/160x220?text=📖+No+Cover'" />
         <div class="modal-info">
           <h2 id="modal-title"></h2>
           <p id="modal-author"></p>
