@@ -70,7 +70,7 @@ body {
 #books-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 480px; /* prevents columns from squishing before scroll kicks in */
+  min-width: 580px;
 }
 
 #books-table thead tr {
@@ -103,11 +103,18 @@ body {
 .actions {
   display: flex;
   gap: 6px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* stays on one line on desktop */
+}
+
+/* Actions column — wide enough to hold all 3 buttons */
+#books-table th:last-child,
+#books-table td:last-child {
+  width: 220px;
+  min-width: 220px;
 }
 
 .btn {
-  padding: 6px 14px;
+  padding: 6px 12px;
   font-size: 13px;
   font-weight: 600;
   border: none;
