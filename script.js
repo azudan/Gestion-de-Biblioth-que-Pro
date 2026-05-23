@@ -38,7 +38,6 @@ function loadXML() {
   xhr.onerror = function () {
     // Sur file://, XMLHttpRequest échoue – on charge des données démo
     console.warn('Erreur réseau – données démo chargées.');
-    loadDemoData();
   };
 
   xhr.send();
@@ -64,21 +63,6 @@ function parseXML(xmlDoc) {
 function getText(node, tag) {
   const el = node.getElementsByTagName(tag)[0];
   return el ? el.textContent.trim() : '';
-}
-
-// Données démo si books.xml inaccessible (ouverture directe sans serveur)
-function loadDemoData() {
-  books = [
-    { title: 'JavaScript Avancé',  author: 'Tuteur Mouhamed M. Diouf', year: '2020', price: '5000 FCFA', cover: 'images/js-avance.png' },
-    { title: 'Apprendre le DOM',   author: 'Tuteur Mouhamed M. Diouf', year: '2022', price: '7000 FCFA', cover: 'images/dom.jpg' },
-    { title: 'Maîtriser les Événements JavaScript', author: 'Khadim DIOP', year: '2024', price: '6000 FCFA', cover: 'images/khadim-diop.png' },
-    { title: 'Algorithmes et Structures de Données', author: 'Azubuike Daniel EZEADIM', year: '2024', price: '8500 FCFA', cover: 'images/azubuike-ezeadim.png' },
-    { title: 'Développement Web Moderne avec HTML5', author: 'Abdallah NDIAYE', year: '2023', price: '7500 FCFA', cover: 'images/abdallah-ndiaye.png' },
-    { title: 'Introduction au XML et aux Web Services', author: 'Yero Gallo SENE', year: '2023', price: '6500 FCFA', cover: 'images/yerogallo-sene.png' },
-    { title: 'CSS3 Avancé et Design Responsive', author: 'Mouhamadou Lamine Bamba THIAM', year: '2024', price: '7000 FCFA', cover: 'images/laminebamba-thiam.png' },
-    { title: 'Gestion de Projets Web et Bases de Données', author: 'Saïkou Oumar THIOUNE', year: '2024', price: '9000 FCFA', cover: 'images/saikou-thioune.png' },
-  ];
-  renderTable(books);
 }
 
 // ─── RENDU DU TABLEAU ─────────────────────────────────────
