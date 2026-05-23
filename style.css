@@ -58,11 +58,19 @@ body {
   border-color: #999;
 }
 
+/* ===== TABLE WRAPPER — enables horizontal scroll on small screens ===== */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 28px;
+}
+
 /* ===== TABLE ===== */
 #books-table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 28px;
+  min-width: 480px; /* prevents columns from squishing before scroll kicks in */
 }
 
 #books-table thead tr {
@@ -76,6 +84,7 @@ body {
   font-weight: 700;
   color: #222;
   border-bottom: 2px solid #ddd;
+  white-space: nowrap;
 }
 
 #books-table td {
@@ -94,6 +103,7 @@ body {
 .actions {
   display: flex;
   gap: 6px;
+  flex-wrap: wrap;
 }
 
 .btn {
@@ -104,13 +114,14 @@ body {
   border-radius: 5px;
   cursor: pointer;
   color: #fff;
+  white-space: nowrap;
   transition: opacity 0.15s;
 }
 .btn:hover { opacity: 0.88; }
 
-.btn-voir      { background-color: #3cb371; } /* vert */
-.btn-modifier  { background-color: #3a85d8; } /* bleu */
-.btn-supprimer { background-color: #e04040; } /* rouge */
+.btn-voir      { background-color: #3cb371; }
+.btn-modifier  { background-color: #3a85d8; }
+.btn-supprimer { background-color: #e04040; }
 
 /* ===== FORM HEADING ===== */
 .form-heading {
@@ -146,6 +157,7 @@ body {
 .form-actions {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
   margin-top: 4px;
 }
 
@@ -184,6 +196,7 @@ body {
   z-index: 200;
   align-items: center;
   justify-content: center;
+  padding: 16px;
 }
 .modal-overlay.active {
   display: flex;
@@ -194,7 +207,7 @@ body {
   border-radius: 8px;
   padding: 32px 36px;
   max-width: 600px;
-  width: 90%;
+  width: 100%;
   position: relative;
   box-shadow: 0 8px 32px rgba(0,0,0,0.18);
 }
@@ -232,6 +245,7 @@ body {
   flex-direction: column;
   gap: 6px;
   padding-top: 8px;
+  min-width: 0; /* prevents text overflow in flex child */
 }
 
 .modal-info h2 {
@@ -239,18 +253,57 @@ body {
   font-weight: 700;
   color: #111;
   margin-bottom: 4px;
+  word-break: break-word;
 }
 
 .modal-info p {
   font-size: 15px;
   color: #444;
+  word-break: break-word;
 }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 560px) {
-  .card { padding: 24px 18px; }
-  .modal-body { flex-direction: column; align-items: center; }
-  .modal-body img { width: 140px; height: 190px; }
-  #books-table th:nth-child(3),
-  #books-table td:nth-child(3) { display: none; }
+
+/* Tablet — 600px */
+@media (max-width: 600px) {
+  body { padding: 20px 12px; }
+
+  .card { padding: 24px 18px 28px; }
+
+  .app-title { font-size: 21px; }
+  .title-icon { font-size: 22px; }
+
+  .btn { padding: 5px 10px; font-size: 12px; }
+
+  .modal-card { padding: 24px 18px; }
+
+  .modal-body {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .modal-body img {
+    width: 140px;
+    height: 190px;
+  }
+
+  .modal-info {
+    width: 100%;
+    padding-top: 12px;
+    text-align: center;
+  }
+}
+
+/* Mobile — 400px */
+@media (max-width: 400px) {
+  body { padding: 12px 8px; }
+
+  .card { padding: 18px 12px 22px; }
+
+  .app-title { font-size: 18px; gap: 8px; }
+
+  .form-actions { flex-direction: column; }
+
+  .btn-ajouter,
+  .btn-annuler { width: 100%; text-align: center; }
 }
