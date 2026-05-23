@@ -111,8 +111,8 @@ function viewBook(index) {
   document.getElementById('modal-price') .textContent = b.price;
 
   const img = document.getElementById('modal-img');
-  img.src   = b.cover || '';
-  img.style.display = b.cover ? 'block' : 'none';
+  img.style.display = 'block';
+  img.src = b.cover || 'https://placehold.co/160x220?text=No+Cover';
 
   document.getElementById('modal-overlay').classList.add('active');
 }
