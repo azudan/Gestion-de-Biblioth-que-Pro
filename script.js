@@ -1,24 +1,19 @@
 /* ========================================================
    Gestion de Bibliothèque – script.js
-   Compétences évaluées :
-     • Manipulation du DOM
-     • Gestion des événements
-     • CRUD en JavaScript
-     • Chargement XML (XMLHttpRequest)
-     • Logique applicative front-end
    ======================================================== */
 
-// ─── STATE ───────────────────────────────────────────────
-let books = [];        // tableau principal de données
-let editingIndex = -1; // index du livre en cours de modification
+// ─── STATE ────────────────────────────────────────────────
+let books        = [];
+let editingIndex = -1;
 
 // ─── INIT ─────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
   loadXML();
 
-  // Recherche en temps réel (keyup)
-  document.getElementById('search-input')
-    .addEventListener('keyup', filterBooks);
+  // Recherche en temps réel sur les 3 champs (keyup)
+  document.getElementById('search-title') .addEventListener('keyup', filterBooks);
+  document.getElementById('search-author').addEventListener('keyup', filterBooks);
+  document.getElementById('search-year')  .addEventListener('keyup', filterBooks);
 });
 
 // ─── CHARGEMENT XML ───────────────────────────────────────
@@ -30,25 +25,20 @@ function loadXML() {
     if (xhr.status === 200) {
       parseXML(xhr.responseXML);
     } else {
-      console.warn('books.xml introuvable – démarrage avec liste vide.');
-      renderTable(books);
+      console.warn('books.xml introuvable.');
     }
   };
 
   xhr.onerror = function () {
-    // Sur file://, XMLHttpRequest échoue – on charge des données démo
-    console.warn('Erreur réseau – données démo chargées.');
-    loadDemoData();
+    console.warn('Erreur réseau – utilisez un serveur local (ex: Live Server).');
   };
 
   xhr.send();
 }
 
 function parseXML(xmlDoc) {
-  const bookNodes = xmlDoc.getElementsByTagName('book');
   books = [];
-
-  Array.from(bookNodes).forEach(node => {
+  Array.from(xmlDoc.getElementsByTagName('book')).forEach(node => {
     books.push({
       title:  getText(node, 'title'),
       author: getText(node, 'author'),
@@ -57,7 +47,6 @@ function parseXML(xmlDoc) {
       cover:  getText(node, 'cover'),
     });
   });
-
   renderTable(books);
 }
 
@@ -66,25 +55,10 @@ function getText(node, tag) {
   return el ? el.textContent.trim() : '';
 }
 
-// Données démo si books.xml inaccessible (ouverture directe sans serveur)
-function loadDemoData() {
-  books = [
-    { title: 'JavaScript Avancé',  author: 'Tuteur Mouhamed M. Diouf', year: '2020', price: '5000 FCFA', cover: 'images/js-avance.png' },
-    { title: 'Apprendre le DOM',   author: 'Tuteur Mouhamed M. Diouf', year: '2022', price: '7000 FCFA', cover: 'images/dom.jpg' },
-    { title: 'Maîtriser les Événements JavaScript', author: 'Khadim DIOP', year: '2024', price: '6000 FCFA', cover: 'images/khadim-diop.png' },
-    { title: 'Algorithmes et Structures de Données', author: 'Azubuike Daniel EZEADIM', year: '2024', price: '8500 FCFA', cover: 'images/azubuike-ezeadim.png' },
-    { title: 'Développement Web Moderne avec HTML5', author: 'Abdallah NDIAYE', year: '2023', price: '7500 FCFA', cover: 'images/abdallah-ndiaye.png' },
-    { title: 'Introduction au XML et aux Web Services', author: 'Yero Gallo SENE', year: '2023', price: '6500 FCFA', cover: 'images/yerogallo-sene.png' },
-    { title: 'CSS3 Avancé et Design Responsive', author: 'Mouhamadou Lamine Bamba THIAM', year: '2024', price: '7000 FCFA', cover: 'images/laminebamba-thiam.png' },
-    { title: 'Gestion de Projets Web et Bases de Données', author: 'Saïkou Oumar THIOUNE', year: '2024', price: '9000 FCFA', cover: 'images/saikou-thioune.png' },
-  ];
-  renderTable(books);
-}
-
 // ─── RENDU DU TABLEAU ─────────────────────────────────────
 function renderTable(list) {
-  const tbody  = document.getElementById('books-tbody');
-  const empty  = document.getElementById('empty-msg');
+  const tbody = document.getElementById('books-tbody');
+  const empty = document.getElementById('empty-msg');
   tbody.innerHTML = '';
 
   if (list.length === 0) {
@@ -93,9 +67,8 @@ function renderTable(list) {
   }
   empty.style.display = 'none';
 
-  list.forEach((book) => {
+  list.forEach(book => {
     const realIndex = books.indexOf(book);
-
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td>${escapeHtml(book.title)}</td>
@@ -116,25 +89,30 @@ function renderTable(list) {
 
 // ─── RECHERCHE / FILTRE ───────────────────────────────────
 function filterBooks() {
-  const query = document.getElementById('search-input').value.trim().toLowerCase();
-  const filtered = query
-    ? books.filter(b => b.title.toLowerCase().includes(query))
-    : books;
+  const qTitle  = document.getElementById('search-title') .value.trim().toLowerCase();
+  const qAuthor = document.getElementById('search-author').value.trim().toLowerCase();
+  const qYear   = document.getElementById('search-year')  .value.trim();
+
+  const filtered = books.filter(b =>
+    b.title .toLowerCase().includes(qTitle)  &&
+    b.author.toLowerCase().includes(qAuthor) &&
+    b.year  .includes(qYear)
+  );
+
   renderTable(filtered);
 }
 
 // ─── VOIR (MODAL) ─────────────────────────────────────────
 function viewBook(index) {
   const b = books[index];
-
-  document.getElementById('modal-title').textContent  = b.title;
+  document.getElementById('modal-title') .textContent = b.title;
   document.getElementById('modal-author').textContent = b.author;
-  document.getElementById('modal-year').textContent   = b.year;
-  document.getElementById('modal-price').textContent  = b.price;
+  document.getElementById('modal-year')  .textContent = b.year;
+  document.getElementById('modal-price') .textContent = b.price;
 
   const img = document.getElementById('modal-img');
-  img.src   = b.cover || '';
-  img.style.display = b.cover ? 'block' : 'none';
+  img.style.display = 'block';
+  img.src = b.cover || 'https://placehold.co/160x220?text=No+Cover';
 
   document.getElementById('modal-overlay').classList.add('active');
 }
@@ -152,15 +130,13 @@ function editBook(index) {
   const b = books[index];
   editingIndex = index;
 
-  document.getElementById('f-title').value  = b.title;
+  document.getElementById('f-title') .value = b.title;
   document.getElementById('f-author').value = b.author;
-  document.getElementById('f-year').value   = b.year;
-  document.getElementById('f-price').value  = b.price;
-  document.getElementById('f-cover').value  = b.cover;
+  document.getElementById('f-year')  .value = b.year;
+  document.getElementById('f-price') .value = b.price;
+  document.getElementById('f-cover') .value = b.cover;
 
-  // Le titre du formulaire reste "Ajouter un livre" (conforme aux captures)
-  // mais le bouton change pour indiquer la sauvegarde
-  document.getElementById('submit-btn').textContent = 'Modifier';
+  document.getElementById('submit-btn').textContent   = 'Modifier';
   document.getElementById('cancel-btn').style.display = 'inline-block';
 
   document.querySelector('.form-fields').scrollIntoView({ behavior: 'smooth' });
@@ -171,13 +147,13 @@ function cancelEdit() {
   resetForm();
 }
 
-// ─── SOUMETTRE (AJOUT / MODIFICATION) ────────────────────
+// ─── SOUMETTRE (AJOUT / MODIFICATION) ─────────────────────
 function submitForm() {
-  const title  = document.getElementById('f-title').value.trim();
+  const title  = document.getElementById('f-title') .value.trim();
   const author = document.getElementById('f-author').value.trim();
-  const year   = document.getElementById('f-year').value.trim();
-  const price  = document.getElementById('f-price').value.trim();
-  const cover  = document.getElementById('f-cover').value.trim();
+  const year   = document.getElementById('f-year')  .value.trim();
+  const price  = document.getElementById('f-price') .value.trim();
+  const cover  = document.getElementById('f-cover') .value.trim();
 
   if (!title || !author || !year || !price) {
     alert('Veuillez remplir les champs : Titre, Auteur, Année et Prix.');
@@ -193,14 +169,11 @@ function submitForm() {
   }
 
   resetForm();
-
-  const query = document.getElementById('search-input').value.trim().toLowerCase();
-  const list  = query ? books.filter(b => b.title.toLowerCase().includes(query)) : books;
-  renderTable(list);
+  filterBooks(); // re-applique le filtre actif après ajout/modif
 }
 
 function resetForm() {
-  ['f-title', 'f-author', 'f-year', 'f-price', 'f-cover'].forEach(id => {
+  ['f-title','f-author','f-year','f-price','f-cover'].forEach(id => {
     document.getElementById(id).value = '';
   });
   editingIndex = -1;
@@ -211,14 +184,9 @@ function resetForm() {
 // ─── SUPPRIMER ────────────────────────────────────────────
 function deleteBook(index) {
   if (!confirm(`Supprimer « ${books[index].title} » ?`)) return;
-
   if (editingIndex === index) cancelEdit();
-
   books.splice(index, 1);
-
-  const query = document.getElementById('search-input').value.trim().toLowerCase();
-  const list  = query ? books.filter(b => b.title.toLowerCase().includes(query)) : books;
-  renderTable(list);
+  filterBooks();
 }
 
 // ─── UTILITAIRE ───────────────────────────────────────────
